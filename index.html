@@ -4,29 +4,98 @@
 <head>
 	<title>My Website</title>
 	<link rel="stylesheet" href="/css/styles.css">
+	<style>
+		.sidebar {
+			height: 100%;
+			width: 0;
+			position: fixed;
+			top: 0;
+			right: 0;
+			background-color: #f2f2f2;
+			overflow-x: hidden;
+			padding-top: 60px;
+			transition: 0.1s;
+		}
+
+		.sidebar a {
+			display: block;
+			padding: 16px;
+			text-decoration: none;
+			color: #000;
+			transition: 0.3s;
+		}
+
+		.sidebar a:hover {
+			background-color: #ddd;
+		}
+
+		.closebtn {
+			position: absolute;
+			top: 0;
+			right: 0px;
+			font-size: 20px;
+			margin-right: 0px;
+		}
+
+		.openbtn {
+			height: 50px;
+			font-size: 20px;
+			cursor: pointer;
+			background-color: #f2f2f2;
+			color: #000;
+			padding: 10px 15px;
+			border: none;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+
+		.content {
+			transition: margin-right 0.1s;
+			padding: 20px;
+		}
+	</style>
+	<script>
+		var sidebarVisible = false; // Add a variable to track the sidebar state
+
+		function toggleNav() {
+			var sidebar = document.querySelector('.sidebar');
+			var content = document.querySelector('.content');
+			var openbtn = document.querySelector('.openbtn');
+
+			if (sidebarVisible) {
+				sidebar.style.width = '0';
+				content.style.marginRight = '0';
+				openbtn.innerHTML = '☰ '; // Change the button text
+				sidebarVisible = false;
+			} else {
+				sidebar.style.width = '250px';
+				content.style.marginRight = '0px';
+				//openbtn.innerHTML = '&times; Close Sidebar'; // Change the button text
+				openbtn.innerHTML = '☰ ';
+				sidebarVisible = true;
+			}
+		}
+	</script>
 </head>
 
 <body>
 
-  <nav>
-    <a href="#projects"><button>Projects</button></a>
-    <a href="#blog"><button>Blog</button></a>
-  </nav>
+	<nav>
+		<button class="openbtn" onclick="toggleNav()">☰ </button>
+	</nav>
 
-  <div class="main">
-    <h1>My Website</h1>
-    <p>Hello World! This is my simple website.</p>
-  </div>
+	<nav class="sidebar">
+		<a href="#" class="closebtn" onclick="toggleNav()">&times;</a>
+		<a href="#">Projects</a>
+		<a href="#">Blog</a>
+		<a href="#">Socials</a>
+	</nav>
 
-  <div id="projects">
-    <h2>Projects</h2>
-    <!-- Project content -->
-  </div>
-
-  <div id="blog">
-    <h2>Blog</h2>
-    <!-- Blog posts -->
-  </div>
+	<div class="content">
+		<h1>My Website</h1>
+		<p>Hello World! This is my simple website.</p>
+	</div>
 
 </body>
 
