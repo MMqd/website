@@ -1,102 +1,50 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<title>My Website</title>
+		<link rel="stylesheet" href="css/styles.css">
+		<script>
+			var sidebarVisible = false; // Add a variable to track the sidebar state
 
-<head>
-	<title>My Website</title>
-	<link rel="stylesheet" href="/css/styles.css">
-	<style>
-		.sidebar {
-			height: 100%;
-			width: 0;
-			position: fixed;
-			top: 0;
-			right: 0;
-			background-color: #f2f2f2;
-			overflow-x: hidden;
-			padding-top: 60px;
-			transition: 0.1s;
-		}
+			function toggleNav() {
+				var sidebar = document.querySelector('.sidebar');
+				var content = document.querySelector('.content');
+				var openbtn = document.querySelector('.openbtn');
 
-		.sidebar a {
-			display: block;
-			padding: 16px;
-			text-decoration: none;
-			color: #000;
-			transition: 0.3s;
-		}
-
-		.sidebar a:hover {
-			background-color: #ddd;
-		}
-
-		.closebtn {
-			position: absolute;
-			top: 0;
-			right: 0px;
-			font-size: 20px;
-			margin-right: 0px;
-		}
-
-		.openbtn {
-			height: 50px;
-			font-size: 20px;
-			cursor: pointer;
-			background-color: #f2f2f2;
-			color: #000;
-			padding: 10px 15px;
-			border: none;
-			position: absolute;
-			top: 0;
-			right: 0;
-		}
-
-		.content {
-			transition: margin-right 0.1s;
-			padding: 20px;
-		}
-	</style>
-	<script>
-		var sidebarVisible = false; // Add a variable to track the sidebar state
-
-		function toggleNav() {
-			var sidebar = document.querySelector('.sidebar');
-			var content = document.querySelector('.content');
-			var openbtn = document.querySelector('.openbtn');
-
-			if (sidebarVisible) {
-				sidebar.style.width = '0';
-				content.style.marginRight = '0';
-				openbtn.innerHTML = '☰ '; // Change the button text
-				sidebarVisible = false;
-			} else {
-				sidebar.style.width = '250px';
-				content.style.marginRight = '0px';
-				//openbtn.innerHTML = '&times; Close Sidebar'; // Change the button text
-				openbtn.innerHTML = '☰ ';
-				sidebarVisible = true;
+				if (sidebarVisible) {
+					sidebar.style.width = '0';
+					content.style.marginRight = '0';
+					openbtn.innerHTML = '☰ '; // Change the button text
+					sidebarVisible = false;
+				} else {
+					sidebar.style.width = '250px';
+					content.style.marginRight = '0px';
+					//openbtn.innerHTML = '&times; Close Sidebar'; // Change the button text
+					openbtn.innerHTML = '☰ ';
+					sidebarVisible = true;
+				}
 			}
-		}
-	</script>
-</head>
+		</script>
+	</head>
 
-<body>
+	<body>
+		<nav>
+			<button class="openbtn" onclick="toggleNav()">☰ </button>
+		</nav>
 
-	<nav>
-		<button class="openbtn" onclick="toggleNav()">☰ </button>
-	</nav>
+		<nav class="sidebar">
+		  <a href="#" class="closebtn" onclick="toggleNav()">&times;</a>
+		  <a href="index.html">Home</a>
+		  <a href="pages/projects.html">Projects</a>
+		  <a href="pages/blog.html">Blog</a>
+		  <a href="pages/social.html">Social</a>
+		  <a href="pages/docs.html">Documentation</a>
+		</nav>
 
-	<nav class="sidebar">
-		<a href="#" class="closebtn" onclick="toggleNav()">&times;</a>
-		<a href="#">Projects</a>
-		<a href="#">Blog</a>
-		<a href="#">Socials</a>
-	</nav>
+		<div class="content">
+			<h1>My Website</h1>
+			<p>Hello World! This is my simple website.</p>
+		</div>
 
-	<div class="content">
-		<h1>My Website</h1>
-		<p>Hello World! This is my simple website.</p>
-	</div>
-
-</body>
-
+	</body>
 </html>

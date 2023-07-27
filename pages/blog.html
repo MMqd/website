@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>My Website</title>
+	<link rel="stylesheet" href="../css/styles.css">
+	<script>
+		var sidebarVisible = false; // Add a variable to track the sidebar state
+
+		function toggleNav() {
+			var sidebar = document.querySelector('.sidebar');
+			var content = document.querySelector('.content');
+			var openbtn = document.querySelector('.openbtn');
+
+			if (sidebarVisible) {
+				sidebar.style.width = '0';
+				content.style.marginRight = '0';
+				openbtn.innerHTML = '☰ '; // Change the button text
+				sidebarVisible = false;
+			} else {
+				sidebar.style.width = '250px';
+				content.style.marginRight = '0px';
+				//openbtn.innerHTML = '&times; Close Sidebar'; // Change the button text
+				openbtn.innerHTML = '☰ ';
+				sidebarVisible = true;
+			}
+		}
+	</script>
+</head>
+
+<body>
+
+	<!--#include virtual="../header.html" -->
+
+
+	<nav>
+		<button class="openbtn" onclick="toggleNav()">☰ </button>
+	</nav>
+
+	<nav class="sidebar">
+	  <a href="#" class="closebtn" onclick="toggleNav()">&times;</a>
+	  <a href="../index.html">Home</a>
+	  <a href="../pages/projects.html">Projects</a>
+	  <a href="../pages/blog.html">Blog</a>
+	  <a href="../pages/social.html">Social</a>
+	  <a href="../pages/docs.html">Documentation</a>
+	</nav>
+
+
+	<div class="content">
+		<p>blog</p>
+	</div>
+
+</body>
+
+</html>
