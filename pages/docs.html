@@ -157,13 +157,26 @@
   <![endif]-->
 </head>
 <body>
-	<p><div class="title" style="text-align:center;"><strong>Physical Glare Documentation</strong></div></p>
+	<p><div class="title" style="text-align:center;"><strong>Photoreal Glare Documentation</strong></div></p>
 	<div style="text-align:center;">
-		<img src="documentation images/addon logo.webp" style="width:600px;"/>
+		<img src="documentation images/addon banner large.webp" style="width:1200px;"/>
 	</div>
+
+<h1 id="installation"><strong>Installation</strong></h1>
+<div class="container">
+  <ol>
+    <li>Open Blender and go to Preferences > Add-ons</li>
+    <li>Click Install...</li>
+    <li>Select the downloaded add-on .zip file</li>
+    <li>Check the box to enable the add-on</li>
+    <li>Click the “Install dependencies” button to install the libraries needed for the add-on to run</li>
+  </ol>
+</div>
+
 <h1 id="how-to-use"><strong>How to use</strong></h1>
-<div style="display:flex;flex:1;width:50%;">
-	<img src="documentation images/sun without glare.png"/> <img src="documentation images/sun without glare.png"/>
+<div style="display:block;width:1200px; margin: auto;">
+	<img src="documentation images/nishita sky without glare.png" style="width: 595px;"/> <img src="documentation images/nishita sky with glare.png" style="width: 595px;"/>
+	<small><em>Demo image modified from scene <a href="https://cloud.blender.org/p/gallery/5f4d1791cc1d7c5e0e8832d4">Nishita Sky Demo</a> under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a> by Blender Studio</em></small>
 </div>
 
 <div class="container">
@@ -173,20 +186,27 @@
 	<br>
 	<br>
 	The addon is located in the “Image Editor” window. Select the image you want to apply the glare to, and the easiest way to get started is to click “Render and Apply Glare Preview” This will generate a low quality preview of glare applied to the currently selected image in the image editor. The preview is useful for checking the general size and shape of the glare, though colors and details may be inaccurate, especially for small objects.</p>
-	<p>If satisfied with how the glare looks, click "Render and Apply Glare" to generate a high quality glare overlay. The following is some more detailed steps on how to configure the glare.</p>
-	<p>
+	<p>If satisfied with how the glare looks, click “Render and Apply Glare” to generate and apply high quality glare. The following is some more detailed steps on how to configure the glare.</p>
+	<p><strong>Tip: </strong>Try generating glare, and applying it separately. Generating the glare may not be possible on the GPU due to VRAM requirements, so generate it on the CPU, and apply it on the GPU.</p>
 </div>
+<p>
+It is recommended to work with images, with a view transform applied, such as Filmic. So if importing images in formats such as OpenEXR do the following:
+<ol>
+	<li>In the Image Editor, open the EXR file.</li>
+	<li>In the Properties panel, set the View as Render option to display the image with the same view transform as when rendering.</li>
+</ol>
+You can also save the image with the color transform applied, while viewing the image go to “Image” > “Save As”, and make sure to check “Save As Render”.
+</p>
 
 <h1 id="glare-settings">Glare Settings</h1>
 <p><img src="documentation images/addon glare settings.png" class="right"/>
 Features settings for the glare, with the most notable ones being aperture type, camera settings, and low step preview.</p>
 <ul>
-<li><p><strong>Use Current Image Size:</strong> Use the current image’s largest dimension as “Target Image Size”.</p>
-<ul>
-<p><li><strong>Target Image Size:</strong> The maximum dimension of the image that the glare will be applied to. For a 1920x1080 image, this would be 1920. This setting is useful if you plan to render the glare separately.</li></p>
-</ul></li>
-<li><strong>Aperture Source:</strong> The aperture can be defined as either a polygon or an image. Using a polygon allows you to specify the number of edges (a circle is 2 edges). Using an image allows you to specify a custom high-resolution image for the aperture shape. A high resolution image is recommended so the glare effect remains clear and sharp when rendering at any output size. Higher input image resolutions do not impact rendering performance.</li>
-</ul>
+	<li><p><strong>Use Current Image Size:</strong> Use the current image’s largest dimension as “Target Image Size”.</p>
+		<ul>
+		<p><li><strong>Target Image Size:</strong> The maximum dimension of the image that the glare will be applied to. For a 1920x1080 image, this would be 1920. This setting is useful if you plan to render the glare separately.</li></p>
+		</ul></li>
+<li><strong>Aperture Source:</strong> The aperture can be defined as either a polygon or an image. Using a polygon allows you to specify the number of edges (a circle is 2 edges). Using an image allows you to specify a custom high-resolution image for the aperture shape. A high resolution image is recommended so the glare effect remains clear and sharp when rendering at any output size. Higher input image resolutions do not impact rendering performance.
 <table>
 <tbody>
 	<tr class="odd">
@@ -280,18 +300,38 @@ Features settings for the glare, with the most notable ones being aperture type,
 </div>
 
 <p>The images shown are for illustration only (Using a tiny aperture size of 0.1 mm, and cropped). In reality, the visible parts of the glare images used are very small, with just one bright pixel at the center, here is a cropped version (target: 1024, cropped to 256):</p>
-<p><img src="documentation images/cropped 2 edge shape diffraction real example.png" style="width: 100; display: block; margin: auto;"/></p>
-<ul>
+<p><img src="documentation images/cropped 2 edge shape diffraction real example.png" style="width: 200px; display: block; margin: auto;"/></p>
 
 <br>
 By using a custom aperture image, we can simulate interesting optical effects like those seen in the classic single slit experiment:
-<div style="width: 500px; display: block; margin: auto;">
+<div style="width: 400px; display: block; margin: auto;">
   <p>
-    <img src="documentation images/cropped single slit.png" style="width: 245px; padding 10px">
-    <img src="documentation images/cropped single slit diffraction.png" style="width: 245px;">
+    <img src="documentation images/cropped single slit.png" style="width: 195px; padding 10px">
+    <img src="documentation images/cropped single slit diffraction.png" style="width: 195px;">
   </p>
 </div>
+</li>
+</ul>
 
+<ul>
+<li><strong>Obstruction image:</strong> used to add imperfections to aperture, like dirt and eyelashes. For example:
+</li>
+<p>
+<img src="documentation images/dirt small.png" style="width: 200px;border: 10px solid black;"/>
+</p>
+<small><em>Dirt image (border added for visibility)</em></small>
+<p>
+<img src="documentation images/cropped shape 6 glare for 1024px no dirt.png" style="width: 200px;image-rendering: pixelated;"/>
+<img src="documentation images/cropped shape 6 glare for 1024px dirt small.png" style="width: 200px;image-rendering: pixelated;"/>
+</p>
+<small><em>Left no obstruction, Right obstruction applied</em></small>
+</ul>
+
+<ul>
+<li><strong>Glare Size Method:</strong> Glare size source, use “Camera” for matching size for specific camera settings, and “Value” to use a single easy to tweak value</li>
+</ul>
+
+<ul>
 <li><p><img src="documentation images/addon camera settings.png" class="right"/><strong>Camera:</strong> If a camera is specified, the “Sensor Size”, “Aperture Size”, and “Focal Length” will be read from that camera's settings. If no camera is given, these parameters can be set manually in millimeters. Specifying a camera is recommended for realistic settings based on real lens models. Manually setting the sensor, aperture, and focal length values allows for creative flexibility.</p></li>
 </ul>
 <ul>
@@ -301,7 +341,7 @@ By using a custom aperture image, we can simulate interesting optical effects li
 <li><strong>Render Glare:</strong> Renders the glare image, and shows it in the image editor.</li>
 </ul>
 <h1 id="apply-glare-settings">Apply Glare Settings</h1>
-<p><img src="documentation images/addon apply glare settings.png" class="right"/>Applies the glare image to the current image in the editor.</p>
+<p><img src="documentation images/addon apply glare settings.png" class="right"/>Applies the glare image to the current image in the editor. Currently single-threaded, to save memory.</p>
 <ul>
 <li><strong>Glare Image:</strong> The glare image to use. It's recommended to generate this in the “Glare Settings” to ensure consistent resolution with the scene. But other images can be used for creative effects.</li>
 </ul>
