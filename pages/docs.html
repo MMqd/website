@@ -19,10 +19,10 @@
 
     body {
       max-width: 1820px;
-      padding-left: 1em;
-      padding-right: 1em;
-      padding-top: 1em;
-      padding-bottom: 1em;
+      padding-left: min(10%, 50px);
+      padding-right: min(10%, 50px);
+      padding-top: min(10%, 50px);
+      padding-bottom: min(10%, 50px);
       margin: auto;
       hyphens: auto;
       overflow-wrap: break-word;
@@ -154,10 +154,23 @@
 <body>
     <p><div class="title" style="text-align:center;"><strong>Photoreal Glare Documentation</strong></div></p>
     <div style="text-align:center;">
-        <img src="documentation images/addon banner large.webp" style="width:1200px;"/>
+        <img src="documentation images/addon banner fade.png" style="width:1200px;"/>
     </div>
 
-<h1 id="installation"><strong>Installation</strong></h1>
+<h1><strong>Installation</strong></h1>
+<h2><strong>Prerequisites</strong></h2>
+<h3><strong>Windows</strong></h2>
+<p>For AMD GPU (Experimental) install <a href="https://rocmdocs.amd.com/en/latest/deploy/windows/quick_start.html">ROCM</a>.</p>
+<p>For NVIDIA GPU install <a href="https://developer.nvidia.com/cuda-downloads">CUDA</a>.</p>
+
+<h3><strong>Linux</strong></h2>
+<p>For AMD GPU (Experimental) install <a href="https://rocmdocs.amd.com/en/latest/deploy/windows/quick_start.html">ROCM</a>.</p>
+<p>For NVIDIA GPU install <a href="https://developer.nvidia.com/cuda-downloads">CUDA</a>.</p>
+
+<h3><strong>MacOS</strong></h2>
+<p>No GPU support, so no prerequisites.</p>
+
+<h2><strong>Addon</strong></h2>
 <div class="container">
   <ol>
     <li>Open Blender and go to Preferences > Add-ons</li>
@@ -168,8 +181,7 @@
   </ol>
 </div>
 
-
-<h1 id="how-to-use"><strong>How To Use</strong></h1>
+<h1><strong>How To Use</strong></h1>
 
 <div style="display:block;width:1200px; max-width: 100%; margin: auto;text-align: center;">
 	<img src="documentation images/nishita sky without glare.png" style="width: 595px;"/>
@@ -196,7 +208,7 @@ It is recommended to work with images, with a view transform applied, such as Fi
 You can also save the image with the color transform applied, while viewing the image go to “Image” > “Save As”, and make sure to check “Save As Render”.
 </p>
 
-<h1 id="glare-settings">Glare Settings</h1>
+<h1>Glare Settings</h1>
 <p><img src="documentation images/addon glare settings.png" class="right"/>
 Features settings for the glare, with the most notable ones being aperture type, camera settings, and low step preview.</p>
 <ul>
@@ -316,12 +328,12 @@ By using a custom aperture image, we can simulate interesting optical effects li
 
 <div style="text-align:center;">
     <p>
-    <img src="documentation images/dirt small.png" style="width: 200px;"/>
+    <img src="documentation images/dirt.png" style="width: 200px;"/>
     </p>
     <small><em>Dirt image</em></small>
     <p>
-        <img src="documentation images/cropped shape 6 glare for 1024px no dirt.png" style="width: 200px;image-rendering: pixelated;"/>
-        <img src="documentation images/cropped shape 6 glare for 1024px dirt small.png" style="width: 200px;image-rendering: pixelated;"/>
+        <img src="documentation images/glare no obstruction.png" style="width: 200px;image-rendering: pixelated;"/>
+        <img src="documentation images/glare with obstruction.png" style="width: 200px;image-rendering: pixelated;"/>
     </p>
     <small><em>Left no obstruction, Right obstruction applied</em></small>
 </div>
@@ -337,17 +349,18 @@ By using a custom aperture image, we can simulate interesting optical effects li
 <ul>
 <li><p><strong>Wavelength Range:</strong> This sets the range of colors/wavelengths to generate glare for. The default range covers the full visible spectrum. You can specify a narrower range to isolate glare for certain colors only.</p></li>
 <li><p><strong>Wavelength Steps:</strong> The number of color samples taken from the “Wavelength Range”. Higher values provide more spectral accuracy, which is noticeable with lots of multicolored glare. Lower values can create a “stepped color” pattern in the glare due to fewer color samples. For subtle or monochromatic glare, a lower value works fine.</p></li>
-<li><p><strong>Resize Factor:</strong> Glare image dimension multiplier. Lower values are faster to render, but give cropped lower quality glare. Higher values give higher quality glare that extends further, up to the maximum image size. (0.5 is around 4 times faster than 1.0)</p></li>
+<li><p><strong>Dispersion:</strong> Amount of color spread, lower values give a less colorful, sometimes grayscale glare, higher values give more colorful glare. (Values other than 1.0 are not physically accurate)</p></li>
 <li><p><strong>Low Step Preview:</strong> Enabling this previews the glare using fewer “Wavelength Steps”, scaled by the “Step Factor”. This improves render performance but shows an approximation of the final glare effect. Useful for quicker preview renders before final high quality output.</p></li>
 <li><strong>Render Glare:</strong> Renders the glare image, and shows it in the image editor.</li>
 </ul>
-<h1 id="apply-glare-settings">Apply Glare Settings</h1>
+<h1>Apply Glare Settings</h1>
 <p><img src="documentation images/addon apply glare settings.png" class="right"/>Applies the glare image to the current image in the editor. Currently single-threaded, to save memory.</p>
 <ul>
 <li><strong>Glare Image:</strong> The glare image to use. It's recommended to generate this in the “Glare Settings” to ensure consistent resolution with the scene. But other images can be used for creative effects.</li>
 </ul>
 <ul>
-<li><strong>Crop Factor:</strong> Crops the glare image around the center before applying. Higher values improve performance but reduce the maximum glare streak length. Useful for low contrast scenes that don't need long streaks. (It is easier to use “Resize Factor” in “Glare Settings” instead)</li>
+<li><strong>Glare Crop Factor:</strong> Gamma correction for glare image, lower values give smaller glare, higher values give larger glare. (Values other than 1.0 are not physically accurate.)</li>
+<li><strong>Glare Crop Factor:</strong> Crops the glare image around the center before applying. Higher values improve performance but reduce the maximum glare streak length. Useful for low contrast scenes that don't need long streaks. (It is easier to use “Resize Factor” in “Glare Settings” instead)</li>
 </ul>
 <ul>
 <li><strong>Low Res Preview:</strong> Applies the glare to a lower resolution version of the image, scaled by the “Scale Factor”. This gives a faster preview of the glare effect before final render.</li>
