@@ -7,9 +7,26 @@
   <title>documentation page</title>
   <style>
     * {
-		max-width: 100%
-		box-sizing: border-box;
-	}
+        max-width: 100%
+        box-sizing: border-box;
+    }
+    a:link {
+      color: cyan;
+      text-decoration: None;
+    }
+
+    a:visited {
+      color: purple;
+      text-decoration: None;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    a:active {
+      color: red;
+    }
 
     html {
       color: #DBDBDB;
@@ -59,7 +76,7 @@
     h1, h2, h3, h4, h5, h6 {
       margin-top: 1.4em;
       clear: right;
-      color: #EBDCA4;
+      color: #EBE3C5;
     }
     h5, h6 {
       font-size: 1em;
@@ -161,11 +178,12 @@
 <h2><strong>Prerequisites</strong></h2>
 <h3><strong>Windows</strong></h2>
 <p>For AMD GPU (Experimental) install <a href="https://rocmdocs.amd.com/en/latest/deploy/windows/quick_start.html">ROCM</a>.</p>
-<p>For NVIDIA GPU install <a href="https://developer.nvidia.com/cuda-downloads">CUDA</a>.</p>
+<p>For NVIDIA GPU install <a href="https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64">CUDA</a>.</p>
 
 <h3><strong>Linux</strong></h2>
-<p>For AMD GPU (Experimental) install <a href="https://rocmdocs.amd.com/en/latest/deploy/windows/quick_start.html">ROCM</a>.</p>
-<p>For NVIDIA GPU install <a href="https://developer.nvidia.com/cuda-downloads">CUDA</a>.</p>
+Installation may vary depending on distribution and package manager.
+<p>For AMD GPU (Experimental) install <a href="https://rocmdocs.amd.com/en/latest/deploy/linux/quick_start.html">ROCM</a>.</p>
+<p>For NVIDIA GPU install <a href="https://developer.nvidia.com/cuda-downloads?target_os=Linux">CUDA</a>.</p>
 
 <h3><strong>MacOS</strong></h2>
 <p>No GPU support, so no prerequisites.</p>
@@ -184,13 +202,13 @@
 <h1><strong>How To Use</strong></h1>
 
 <div style="display:block;width:1200px; max-width: 100%; margin: auto;text-align: center;">
-	<img src="documentation images/nishita sky without glare.png" style="width: 595px;"/>
-	<img src="documentation images/nishita sky with glare.png" style="width: 595px;"/>
-	<div style="text-align: center;"> <small><em>Demo image modified from scene <a href="https://cloud.blender.org/p/gallery/5f4d1791cc1d7c5e0e8832d4">Nishita Sky Demo</a> under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a> by Blender Studio</em></small> </div>
+    <img src="documentation images/nishita sky demo no glare.png" style="width: 595px;"/>
+    <img src="documentation images/nishita sky demo with glare.png" style="width: 595px;"/>
+    <div style="text-align: center;"> <small><em>Demo image modified from scene <a href="https://cloud.blender.org/p/gallery/5f4d1791cc1d7c5e0e8832d4">Nishita Sky Demo</a> under <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a> by Blender Studio</em></small> </div>
 </div>
 
 <div class="container">
-    <img src="documentation images/addon full minimized.png" class="right"/>
+    <img src="documentation images/addon full.png" class="right" style="width: 150px"/>
     <p>
     <strong>Warning: first GPU run may be very slow.</strong>
     <br>
@@ -209,7 +227,7 @@ You can also save the image with the color transform applied, while viewing the 
 </p>
 
 <h1>Glare Settings</h1>
-<p><img src="documentation images/addon glare settings.png" class="right"/>
+<p><img src="documentation images/addon render glare.png" class="right" style="width: 150px"/>
 Features settings for the glare, with the most notable ones being aperture type, camera settings, and low step preview.</p>
 <ul>
     <li><p><strong>Use Current Image Size:</strong> Use the current image’s largest dimension as “Target Image Size”.</p>
@@ -219,19 +237,19 @@ Features settings for the glare, with the most notable ones being aperture type,
 <li><strong>Aperture Source:</strong> The aperture can be defined as either a polygon or an image. Using a polygon allows you to specify the number of edges (a circle is 2 edges). Using an image allows you to specify a custom high-resolution image for the aperture shape. A high resolution image is recommended so the glare effect remains clear and sharp when rendering at any output size. Higher input image resolutions do not impact rendering performance.
 <table>
 <tbody>
-    <tr class="odd">
+    <tr>
     <td><Strong>Image</Strong></td>
     <td><Strong>Polygon</Strong></td>
     </tr>
-    <tr class="even">
+    <tr>
         <td>
             <div style="text-align:center;">
-                <img src="documentation images/addon aperture image.png">
+                <img src="documentation images/addon aperture image.png" style="width:auto">
             </div>
         </td>
     <td>
     <div style="text-align:center;">
-        <img src="documentation images/addon aperture polygon.png"
+		<img src="documentation images/addon aperture polygon.png" style="width:auto">
     </div>
     </td>
     </tr>
@@ -344,7 +362,7 @@ By using a custom aperture image, we can simulate interesting optical effects li
 </ul>
 
 <ul>
-<li><p><img src="documentation images/addon camera settings.png" class="right"/><strong>Camera:</strong> If a camera is specified, the “Sensor Size”, “Aperture Size”, and “Focal Length” will be read from that camera's settings. If no camera is given, these parameters can be set manually in millimeters. Specifying a camera is recommended for realistic settings based on real lens models. Manually setting the sensor, aperture, and focal length values allows for creative flexibility.</p></li>
+<li><p><img src="documentation images/addon camera settings.png" class="right" style="width: 150px"/><strong>Camera:</strong> If a camera is specified, the “Sensor Size”, “Aperture Size”, and “Focal Length” will be read from that camera's settings. If no camera is given, these parameters can be set manually in millimeters. Specifying a camera is recommended for realistic settings based on real lens models. Manually setting the sensor, aperture, and focal length values allows for creative flexibility.</p></li>
 </ul>
 <ul>
 <li><p><strong>Wavelength Range:</strong> This sets the range of colors/wavelengths to generate glare for. The default range covers the full visible spectrum. You can specify a narrower range to isolate glare for certain colors only.</p></li>
@@ -354,7 +372,7 @@ By using a custom aperture image, we can simulate interesting optical effects li
 <li><strong>Render Glare:</strong> Renders the glare image, and shows it in the image editor.</li>
 </ul>
 <h1>Apply Glare Settings</h1>
-<p><img src="documentation images/addon apply glare settings.png" class="right"/>Applies the glare image to the current image in the editor. Currently single-threaded, to save memory.</p>
+<p><img src="documentation images/addon apply glare.png" class="right" style="width: 150px"/>Applies the glare image to the current image in the editor. Currently single-threaded, to save memory.</p>
 <ul>
 <li><strong>Glare Image:</strong> The glare image to use. It's recommended to generate this in the “Glare Settings” to ensure consistent resolution with the scene. But other images can be used for creative effects.</li>
 </ul>
